@@ -1,0 +1,3 @@
+select distinct '0x' || encode(extract_address(abi_field(ble.data, 0)), 'hex') as delegator from chain_moonbeam_mainnet.block_log_events ble join chain_moonbeam_mainnet.block_transactions tr on ble.block_id = tr.block_id and ble.tx_offset = tr.tx_offset
+where ble.topics @> ARRAY[cast('\xc833924412a8727ace4d92945c637ad2d4b389e582bfd4a95cdee608eee9720a' as bytea)]
+and ble.sender = '\x8ebba081291b908096d19f6614df041c95fc4469';
